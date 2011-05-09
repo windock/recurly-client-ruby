@@ -135,7 +135,7 @@ module Recurly
         result
       end
 
-      de(response)
+      def handle_response(response)
         case response.code.to_i
         when 401
           message = Hash.from_xml(response.body)['errors']['error'] rescue nil
@@ -181,11 +181,11 @@ module ActiveResource
         @body = http_client_response.body
         @code = http_client_response.code if response.respond_to?(:code)
         @message = Hash.from_xml(http_client_response.body)['errors']['error'] rescue nil
+        
         if !@message.blank? && @message[-1] == '.'
-          @message = @message[0,-1]
+          @message = @message[0, @message.length - 1]
         end
       end
-      
       def [] some_string
 	      @response[some_string]
       end
