@@ -216,7 +216,7 @@ module ActiveResource
         message = Hash.from_xml(response.body)['errors']['error'] rescue nil
         raise(ServerError.new(response, message))
       else
-        raise(connectionError.new(response, "Unknown response code: #{response.code}"))
+        raise(ConnectionError.new(response, "Unknown response code: #{response.code}"))
       end
     end
     
