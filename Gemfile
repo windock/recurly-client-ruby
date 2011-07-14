@@ -1,5 +1,6 @@
 source :rubygems
 
+gem 'rake'
 gem "activeresource", ">= 3.1.0.rc4"
 gem "addressable", ">= 2.2.1"
 gem "nokogiri"

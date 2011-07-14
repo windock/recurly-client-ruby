@@ -45,6 +45,7 @@ GEM
     mime-types (1.16)
     multi_json (1.0.3)
     nokogiri (1.4.4)
+    rake (0.8.7)
     rspec (2.0.1)
       rspec-core (~> 2.0.1)
       rspec-expectations (~> 2.0.1)
@@ -70,6 +71,7 @@ DEPENDENCIES
   autotest
   growl-glue
   nokogiri
+  rake
   rest-client!
   rspec (>= 2.0.0)
   ruby-debug
