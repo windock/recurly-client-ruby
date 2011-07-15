@@ -51,7 +51,7 @@ module Recurly
     end
 
     # patched to read Errors array
-    def load(attributes)
+    def load(attributes, remove_root = false)
       raise ArgumentError, "expected an attributes Hash, got #{attributes.inspect}" unless attributes.is_a?(Hash)
       @prefix_options, attributes = split_options(attributes)
       attributes.each do |key, value|
