@@ -87,7 +87,7 @@ module Recurly
     end
 
     def connection(refresh = false)
-      @connection = Connection.new(site, format) if refresh || @connection.nil?
+      @connection = ActiveResource::Connection.new(site, format) if refresh || @connection.nil?
       @connection.proxy = proxy if proxy
       @connection.user = user if user
       @connection.password = password if password
