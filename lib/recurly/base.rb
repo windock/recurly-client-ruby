@@ -76,6 +76,20 @@ module Recurly
       self
     end
 
+    def self.connection(refresh = false)
+      @connection = ActiveResource::Connection.new(site, format) if refresh || @connection.nil?
+      @connection.proxy = proxy if proxy
+      @connection.user = user if user
+      @connection.password = password if password
+      @connection.auth_type = auth_type if auth_type
+      @connection.timeout = timeout if timeout
+      @connection.ssl_options = ssl_options if ssl_options
+      def @connection.default_header
+        @default_header ||= {'User-Agent' => "Recurly Ruby Client v#{Recurly::VERSION}"}
+      end
+      @connection
+    end
+
     protected
       # patch load_attributes_from_response so it marks result records as persisted
       def load_attributes_from_response(response)
@@ -129,14 +143,7 @@ module Recurly
         end
       end
 
-    private
-      # patch instantiate_record so it marks result records as persisted
-      def self.instantiate_record(record, prefix_options)
-        result = super
-        result.instance_eval{ @persisted = true }
-        result
-      end
-
+    private    
       def handle_response(response)
         case response.code.to_i
         when 401
@@ -165,15 +172,4 @@ module Recurly
 
   # backwards compatibility
   RecurlyBase = Base
-end
-
-module ActiveResource
-  class Connection
-    private
-    def default_header
-      @default_header ||= {}
-      @default_header['User-Agent'] = "Recurly Ruby Client v#{Recurly::VERSION}"
-      @default_header
-    end
-  end
 end
