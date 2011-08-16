@@ -1,12 +1,11 @@
 source :rubygems
 
 gem 'rake'
-gem "activeresource", ">= 3.1.0.rc4"
+gem "activeresource", ">= 3.1.0.rc5"
 gem "addressable", ">= 2.2.1"
 gem "nokogiri"
 
 gem 'rest-client', :git => "http://github.com/archiloque/rest-client.git"
-
 
 group :test do
   gem "rspec", ">= 2.0.0"
