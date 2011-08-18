@@ -1,5 +1,3 @@
-require 'active_support/memoizable'
-
 module Recurly
 
   class Base < ActiveResource::Base
