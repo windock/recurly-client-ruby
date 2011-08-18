@@ -1,7 +1,6 @@
 module Recurly
 
   class Base < ActiveResource::Base
-    extend ActiveSupport::Memoizable
 
     self.format = Recurly::Formats::XmlWithErrorsFormat.new
 
